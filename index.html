@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<title>PiaDreka - Llogaritë e Nxënësve</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #1f2937;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 12mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 6mm;
+    page-break-after: always;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  .card {
+    border: 1px dashed #9ca3af;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 82mm;
+    position: relative;
+    background: white;
+  }
+
+  .header {
+    background: #173b66;
+    color: white;
+    padding: 13px 16px;
+  }
+
+  .header strong {
+    font-size: 19px;
+  }
+
+  .header span {
+    float: right;
+    font-size: 11px;
+    margin-top: 5px;
+  }
+
+  .content {
+    padding: 17px;
+  }
+
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .box {
+    background: #f3f6fa;
+    border: 1px solid #dce3ea;
+    border-radius: 7px;
+    padding: 9px 11px;
+    margin-bottom: 10px;
+  }
+
+  .pin-box {
+    background: #fff4ea;
+    border-color: #f4c69d;
+  }
+
+  .label {
+    color: #657080;
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .pin {
+    color: #e66f13;
+    font-size: 20px;
+  }
+
+  .footer {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+
+  .website {
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  @media print {
+    body {
+      background: white;
+    }
+
+    .page {
+      margin: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="pages"></div>
+
+<script>
+const students = [
+  ["Alp Grajqevci", "alp.grajqevci", "1111"],
+  ["Amar Krasniqi", "amar.krasniqi", "2222"],
+  ["Akil Krasniqi", "akil.krasniqi", "3333"],
+  ["Aulon Ajvazi", "aulon.ajvazi", "4444"],
+  ["Blin Xhemajli", "blin.xhemajli", "5555"],
+  ["Desant Dozhlani", "desant.dozhlani", "6666"],
+
+  ["Ensar Sylejmani", "ensar.sylejmani", "7777"],
+  ["Eris Fazliu", "eris.fazliu", "8888"],
+  ["Lendrit Jahja", "lendrit.jahja", "9999"],
+  ["Melos Zhugolli", "melos.zhugolli", "1212"],
+  ["Riard Rexhepi", "riard.rexhepi", "1313"],
+  ["Ylli Gashi", "ylli.gashi", "1414"],
+
+  ["Abdurrahman Kasumi", "abdurrahman.kasumi", "1515"],
+  ["Ajan Nallbani", "ajan.nallbani", "1616"],
+  ["Akil Kahrimani", "akil.kahrimani", "1717"],
+  ["Anuar Topalli", "anuar.topalli", "1818"],
+  ["Elona Kamberi", "elona.kamberi", "1919"],
+  ["Enes Bajgora", "enes.bajgora", "2020"],
+
+  ["Ensar Kosumi", "ensar.kosumi", "2121"],
+  ["Enes Destani", "enes.destani", "2323"],
+  ["Eduart Gashi", "eduart.gashi", "2424"],
+  ["Nart Zhuniqi", "nart.zhuniqi", "2525"],
+  ["Olga Berisha", "olga.berisha", "2626"],
+  ["Unejs Toverlani", "unejs.toverlani", "2727"],
+
+  ["Medina Zabeli", "medina.zabeli", "2828"],
+  ["Nurali Baruti", "nurali.baruti", "2929"],
+  ["Erzana Haradinaj", "erzana.haradinaj", "3030"]
+];
+
+const pages = document.getElementById("pages");
+
+for (let i = 0; i < students.length; i += 6) {
+  const page = document.createElement("div");
+  page.className = "page";
+
+  students.slice(i, i + 6).forEach(([name, username, pin]) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="header">
+        <strong>PiaDreka</strong>
+        <span>Llogaria e nxënësit</span>
+      </div>
+
+      <div class="content">
+        <div class="name">${name}</div>
+
+        <div class="box">
+          <div class="label">Përdoruesi</div>
+          <div class="value">${username}</div>
+        </div>
+
+        <div class="box pin-box">
+          <div class="label">PIN i përkohshëm</div>
+          <div class="value pin">${pin}</div>
+        </div>
+
+        <div class="footer">
+          <div class="website">Hyr në: piadreka.com</div>
+          Ndrysho PIN-in pasi të hysh për herë të parë.<br>
+          Mos ia jep PIN-in tënd askujt.
+        </div>
+      </div>
+    `;
+
+    page.appendChild(card);
+  });
+
+  pages.appendChild(page);
+}
+</script>
+
+</body>
+</html>
